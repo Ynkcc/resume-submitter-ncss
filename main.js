@@ -368,6 +368,7 @@ function applyFilter(){
 
 
 let isDeliveryRunning = false; // 标志变量，用于表示投递状态
+let hasTimeExceededThreshold=false;//标志变量，用于表示是否超出时间阈值
 
 // 辅助函数，用于判断字符串是否包含列表中的任何一个关键词
 function hasKeyword(text, keywords) {
@@ -490,11 +491,11 @@ function selectNeed() {
         }
 
         if (i==(elements.length-1)&&timeThresholdCheckbox.checked && (((new Date() - new Date(publishTime)) / (1000 * 60 * 60)) > parseInt(timeThresholdInput.value))) {
-            logMessage("到达时间阈值，返回第一页重新寻找");
-            logMessage(new Date())
-            logMessage(new Date(publishTime))
-            logMessage((new Date() - new Date(publishTime))/(1000 * 60 * 60))
-            goToPage(1);
+            logMessage("到达时间阈值，稍后返回第一页重新寻找");
+            // logMessage(new Date())
+            // logMessage(new Date(publishTime))
+            // logMessage((new Date() - new Date(publishTime))/(1000 * 60 * 60))
+            hasTimeExceededThreshold=true;
         }
     }
     if(localPassedCount==0){
@@ -504,14 +505,16 @@ function selectNeed() {
 
 
 function submitResume() {
-    if (selectNeed()) {
-        apply()
-        confirmApply();
-        closeSuccessModal();
-    }
-    if(!isDeliveryRunning)return;
     setTimeout(function() {
-        nextPage();
+        if (selectNeed()) {
+            apply()
+            confirmApply();
+            closeSuccessModal();
+        }
+        if(!isDeliveryRunning)return;
+        if(hasTimeExceededThreshold){
+            goToPage(1);
+            hasTimeExceededThreshold=false;}else nextPage();
         submitResume();
     }, 2000);
 }
