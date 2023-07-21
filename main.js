@@ -4,6 +4,7 @@
 // @version      1.0
 // @description  自动投递工作的油猴脚本，包括统计投递数量、配置参数和输出日志功能。
 // @match        https://*.ncss.cn/student/jobs/index.html
+// @match        https://*.ncss.cn/student/jobs/internindex.html?*
 // @grant        GM_addStyle
 // @grant        GM_setValue
 // @grant        GM_getValue
@@ -409,10 +410,26 @@ function confirmApply() {
 
 // 自动关闭提示
 function closeSuccessModal() {
-    var closeButton = document.querySelector("#maskSuccess > div > div > div.modal-header > button");
-    if (closeButton) {
-        closeButton.click();
-    }
+// 使用选择器来找到并隐藏模态框
+var maskSuccess1Modal = document.querySelector('#maskSuccess');
+if (maskSuccess1Modal) {
+  maskSuccess1Modal.style.display = 'none'; // 隐藏模态框
+}
+
+var maskSuccess1Modal1 = document.querySelector('#maskSuccess1');
+if (maskSuccess1Modal1) {
+  maskSuccess1Modal1.style.display = 'none'; // 隐藏模态框
+}
+
+// 找到要隐藏的模态框背景元素
+var modalBackdrop = document.querySelector("body > div.modal-backdrop.fade.in");
+
+// 检查元素是否存在
+if (modalBackdrop) {
+  // 隐藏模态框背景元素
+  modalBackdrop.style.display = "none";
+}
+
 }
 
 // 跳转到指定页面
