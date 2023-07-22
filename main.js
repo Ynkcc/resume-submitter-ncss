@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ncss自动投递简历
 // @namespace    your-namespace
-// @version      1.3
+// @version      1.3.1
 // @description  自动投递简历的油猴脚本，包括统计投递数量、配置参数和输出日志功能。
 // @match        https://*.ncss.cn/student/jobs/index.html
 // @match        https://*.ncss.cn/student/jobs/internindex.html?*
