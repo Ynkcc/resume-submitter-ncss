@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         自动投递工作
+// @name         ncss自动投递简历
 // @namespace    your-namespace
 // @version      1.3
-// @description  自动投递工作的油猴脚本，包括统计投递数量、配置参数和输出日志功能。
+// @description  自动投递简历的油猴脚本，包括统计投递数量、配置参数和输出日志功能。
 // @match        https://*.ncss.cn/student/jobs/index.html
 // @match        https://*.ncss.cn/student/jobs/internindex.html?*
 // @grant        GM_addStyle
@@ -66,7 +66,9 @@ statsLabel.textContent = '当次投递数量：';
 const statsCount = createUIElement('span', {}, statsContainer);
 statsCount.textContent = '0';
 
-const toggleButton = createUIElement('button', {}, container);
+const toggleButton = createUIElement('button', {  style: {
+    marginRight: "5px" // 在右边添加10像素的间距
+  }}, container);
 toggleButton.textContent = '开启投递';
 
 // 创建保存配置按钮
@@ -196,7 +198,7 @@ const BUTTON_STATES = {
 
 // 创建启用/黑名单/白名单按钮
 function createToggleButton(parent) {
-    const button = createUIElement('button', { style: 'margin-left: 5px;' }, parent);
+    const button = createUIElement('button', { style: 'margin-right: 5px;' }, parent);
     button.textContent = BUTTON_STATES.DISABLED;
     return button;
 }
