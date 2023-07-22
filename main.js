@@ -66,9 +66,7 @@ statsLabel.textContent = '当次投递数量：';
 const statsCount = createUIElement('span', {}, statsContainer);
 statsCount.textContent = '0';
 
-const toggleButton = createUIElement('button', {  style: {
-    marginRight: "5px" // 在右边添加10像素的间距
-  }}, container);
+const toggleButton = createUIElement('button', {style: 'margin-right: 5px;'}, container);
 toggleButton.textContent = '开启投递';
 
 // 创建保存配置按钮
